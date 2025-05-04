@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Planet Viewer</title>
+  <style>
+    body {
+      background-color: #e0f7fa;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 100px;
+      margin: 0;
+      overflow: hidden;
+    }
+    h1 {
+      font-size: 28px;
+      color: #004d40;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 20px;
+      background-color: #00796b;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .glitch {
+      font-size: 80px;
+      font-weight: bold;
+      color: red;
+      animation: shake 0.1s infinite, blink 0.4s infinite alternate;
+    }
+    @keyframes shake {
+      0% { transform: translate(0px, 0px); }
+      25% { transform: translate(-10px, 5px); }
+      50% { transform: translate(10px, -5px); }
+      75% { transform: translate(-10px, -5px); }
+      100% { transform: translate(10px, 5px); }
+    }
+    @keyframes blink {
+      0% { color: red; }
+      100% { color: white; }
+    }
+    .process {
+      font-size: 24px;
+      color: lime;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Apakah Anda ingin melihat isi planet misterius?</h1>
+  <button onclick="activate()">YA</button>
+
+  <script>
+    function activate() {
+      document.body.innerHTML = "";
+      document.body.style.backgroundColor = "black";
+      flashBackground();
+      let title = document.createElement("div");
+      title.className = "glitch";
+      title.innerText = "!!! VIRUS TERDETEKSI !!!";
+      document.body.appendChild(title);
+
+      setTimeout(() => {
+        let warning = document.createElement("div");
+        warning.innerHTML = `
+          <p style="color:white; font-size: 24px;">HAPUS VIRUS SEKARANG?</p>
+          <button onclick="explode()">IYA</button>
+          <button onclick="explode()">TIDAK</button>
+        `;
+        document.body.appendChild(warning);
+      }, 2000);
+    }
+
+    function explode() {
+      document.body.innerHTML = "";
+      document.body.style.backgroundColor = "black";
+      let idiot = document.createElement("div");
+      idiot.className = "glitch";
+      idiot.innerText = "YOU ARE AN IDIOT!";
+      document.body.appendChild(idiot);
+
+      let container = document.createElement("div");
+      document.body.appendChild(container);
+
+      let proses = [
+        "Menghapus semua file...",
+        "Reset Android...",
+        "Mengambil data kartu SD...",
+        "Mengaktifkan microphone...",
+        "Menyalin kontak dan pesan...",
+        "Mengirim lokasi ke server...",
+        "Membuka akses remote...",
+        "Menonaktifkan antivirus...",
+        "Meretas akun Instagram...",
+        "Menyalakan kamera depan...",
+        "Menjalankan self-destruction...",
+        "Menonaktifkan sistem utama...",
+        "Mendeteksi wajah pengguna...",
+        "Koneksi dengan Deep Web aktif...",
+        "MENGIRIM VIRUS KE SEMUA KONTAK..."
+      ];
+      let i = 0;
+      let interval = setInterval(() => {
+        if (i < proses.length) {
+          let line = document.createElement("div");
+          line.className = "process";
+          line.innerText = proses[i];
+          container.appendChild(line);
+          i++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 1000);
+    }
+
+    function flashBackground() {
+      let colors = ["black", "darkred"];
+      let i = 0;
+      setInterval(() => {
+        document.body.style.backgroundColor = colors[i % 2];
+        i++;
+      }, 300);
+    }
+  </script>
+</body>
+</html>
